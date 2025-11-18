@@ -11,6 +11,7 @@ public class Trap : MonoBehaviour
         if (player != null)
         {
             player.TakeDamage(damage);
+            Destroy(this.gameObject);
         }
     }
 }
