@@ -27,6 +27,22 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int value)
+    {
+        Health -= value; 
+        Debug.Log("Ouch! Took damage. Remaining Health: " + Health);
+
+        if (Health <= 0)
+        {
+            Die(); 
+        }
+    }
+
+    private void Die()
+    {
+        Debug.Log("Player has died!");
+    }
+
     public float moveSpeed = 6f;
     public float jumpForce = 12f;
 
@@ -43,24 +59,19 @@ public class Player : MonoBehaviour
     {
         float move = 0f;
 
-        // ????????
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
             move = -1f;
 
-        // ???????
         if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
             move = 1f;
 
-        // ?????????? velocity
         rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
 
-        // ?????? (????????????????? Sun ??)
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
 
-        // Flip ????
         if (move != 0)
             transform.localScale = new Vector3(move > 0 ? 1 : -1, 1, 1);
     }
