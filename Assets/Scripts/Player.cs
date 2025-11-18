@@ -27,84 +27,41 @@ public class Player : MonoBehaviour
         }
     }
 
-    [Header("Movement")]
     public float moveSpeed = 6f;
-
-    [Header("Jump")]
     public float jumpForce = 12f;
-    public float gravity = 30f;
 
-    [Header("Ground Check")]
-    public LayerMask groundLayer;
-    public float groundCheckDistance = 0.1f;
+    private Rigidbody2D rb;
 
-    private float moveInput;
-    private float verticalVelocity;
-    private bool isGrounded;
-    private bool jumpQueued;
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        rb.freezeRotation = true;
+    }
 
+    [System.Obsolete]
     void Update()
     {
-        CheckGround();
+        float move = 0f;
 
-        // Reset ??????????????
-        if (isGrounded && verticalVelocity < 0)
+        // ????????
+        if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
+            move = -1f;
+
+        // ???????
+        if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
+            move = 1f;
+
+        // ?????????? velocity
+        rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
+
+        // ?????? (????????????????? Sun ??)
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            verticalVelocity = 0f;
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
 
-        // ??????
-        if (jumpQueued && isGrounded)
-        {
-            verticalVelocity = jumpForce;
-        }
-        jumpQueued = false;
-
-        // ???????????
-        verticalVelocity += gravity * Time.deltaTime;
-
-        // Movement ??? manual
-        Vector3 movement = new Vector3(moveInput * moveSpeed, verticalVelocity, 0f) * Time.deltaTime;
-
-        // ?????????? manual physics
-        transform.position += movement;
-
-        // Flip direction
-        if (moveInput != 0)
-            transform.localScale = new Vector3(moveInput > 0 ? 1 : -1, 1, 1);
-    }
-
-    void CheckGround()
-    {
-        // Raycast ??????????
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer);
-
-        isGrounded = hit.collider != null;
-
-        // ???????????
-        if (isGrounded)
-        {
-            // ????????????????
-            float newY = hit.point.y + GetComponent<Collider2D>().bounds.extents.y;
-            transform.position = new Vector3(transform.position.x, newY, transform.position.z);
-        }
-    }
-
-    // Input System ????
-    public void OnMove(InputAction.CallbackContext ctx)
-    {
-        moveInput = ctx.ReadValue<float>();
-    }
-
-    public void OnJump(InputAction.CallbackContext ctx)
-    {
-        if (ctx.performed)
-            jumpQueued = true;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundCheckDistance);
+        // Flip ????
+        if (move != 0)
+            transform.localScale = new Vector3(move > 0 ? 1 : -1, 1, 1);
     }
 }
