@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public void AddCoin(int value)
     {
         Coin += value;
-        Debug.Log("Picked up acoin! Total coins: " + Coin);
+        Debug.Log("Picked up a coin! Total coins: " + Coin);
     }
 
     public void Heal(int value) 

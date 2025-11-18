@@ -439,8 +439,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   <Coin>k__BackingField: 0
   <Health>k__BackingField: 50
-  moveSpeed: 6
-  jumpForce: 8
+  moveSpeed: 8
+  jumpForce: 10
 --- !u!1 &840545299
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,6 +625,10 @@ PrefabInstance:
     - target: {fileID: 24657658683111817, guid: 29cae0f7d0f2d6e4a954cb9488ef3667, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1601838194339199366, guid: 29cae0f7d0f2d6e4a954cb9488ef3667, type: 3}
+      propertyPath: <ItemValue>k__BackingField
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8821504931923400563, guid: 29cae0f7d0f2d6e4a954cb9488ef3667, type: 3}
       propertyPath: m_Name
@@ -819,6 +823,10 @@ PrefabInstance:
     - target: {fileID: 24657658683111817, guid: 29cae0f7d0f2d6e4a954cb9488ef3667, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1601838194339199366, guid: 29cae0f7d0f2d6e4a954cb9488ef3667, type: 3}
+      propertyPath: <ItemValue>k__BackingField
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8821504931923400563, guid: 29cae0f7d0f2d6e4a954cb9488ef3667, type: 3}
       propertyPath: m_Name
@@ -1070,6 +1078,10 @@ PrefabInstance:
     - target: {fileID: 24657658683111817, guid: 29cae0f7d0f2d6e4a954cb9488ef3667, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1601838194339199366, guid: 29cae0f7d0f2d6e4a954cb9488ef3667, type: 3}
+      propertyPath: <ItemValue>k__BackingField
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8821504931923400563, guid: 29cae0f7d0f2d6e4a954cb9488ef3667, type: 3}
       propertyPath: m_Name
